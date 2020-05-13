@@ -19,38 +19,61 @@ sg.theme('Reddit')
 layout = [
     [sg.Text('Starting Sensitivity'), sg.Input(key='-IN-', size=(8, 1)), sg.Button('Show'), sg.Text('Iteration:'),
      sg.Text(key='-ITER-', size=(4, 1), relief='groove')],
-    [sg.Button('Lower', key='-LOWER-'), sg.Text(key='-LOW-', size=(8, 1), relief='groove'), sg.Text(key='-MID-', size=(8, 1), relief='groove'),
+    [sg.Text('', size=(5, 1)), sg.Text('Lower', size=(8, 1), justification='center'),
+     sg.Text('Mid', size=(8, 1), justification='center'),
+     sg.Text('Upper', size=(8, 1), justification='center')],
+    [sg.Button('Lower', key='-LOWER-'), sg.Text(key='-LOW-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER-')],
-    [sg.Button('Lower', key='-LOWER1-'), sg.Text(key='-LOW1-', size=(8, 1), relief='groove'), sg.Text(key='-MID1-', size=(8, 1), relief='groove'),
+    [sg.Button('Lower', key='-LOWER1-'), sg.Text(key='-LOW1-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID1-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH1-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER1-')],
-    [sg.Button('Lower', key='-LOWER2-'), sg.Text(key='-LOW2-', size=(8, 1), relief='groove'), sg.Text(key='-MID2-', size=(8, 1), relief='groove'),
+    [sg.Button('Lower', key='-LOWER2-'), sg.Text(key='-LOW2-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID2-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH2-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER2-')],
-    [sg.Button('Lower', key='-LOWER3-'), sg.Text(key='-LOW3-', size=(8, 1), relief='groove'), sg.Text(key='-MID3-', size=(8, 1), relief='groove'),
+    [sg.Button('Lower', key='-LOWER3-'), sg.Text(key='-LOW3-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID3-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH3-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER3-')],
-    [sg.Button('Lower', key='-LOWER4-'), sg.Text(key='-LOW4-', size=(8, 1), relief='groove'), sg.Text(key='-MID4-', size=(8, 1), relief='groove'),
+    [sg.Button('Lower', key='-LOWER4-'), sg.Text(key='-LOW4-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID4-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH4-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER4-')],
-    [sg.Button('Lower', key='-LOWER5-'), sg.Text(key='-LOW5-', size=(8, 1), relief='groove'), sg.Text(key='-MID5-', size=(8, 1), relief='groove'),
+    [sg.Button('Lower', key='-LOWER5-'), sg.Text(key='-LOW5-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID5-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH5-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER5-')],
-    [sg.Button('Lower', key='-LOWER6-'), sg.Text(key='-LOW6-', size=(8, 1), relief='groove'), sg.Text(key='-MID6-', size=(8, 1), relief='groove'),
+    [sg.Button('Lower', key='-LOWER6-'), sg.Text(key='-LOW6-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID6-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH6-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER6-')],
-    [sg.Button('Lower', key='-LOWER7-'), sg.Text(key='-LOW7-', size=(8, 1), relief='groove'), sg.Text(key='-MID7-', size=(8, 1), relief='groove'),
+    [sg.Button('Lower', key='-LOWER7-'), sg.Text(key='-LOW7-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID7-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH7-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER7-')],
-    [sg.Button('Lower', key='-LOWER8-'), sg.Text(key='-LOW8-', size=(8, 1), relief='groove'), sg.Text(key='-MID8-', size=(8, 1), relief='groove'),
+    [sg.Button('Lower', key='-LOWER8-'), sg.Text(key='-LOW8-', size=(8, 1), relief='groove'),
+     sg.Text(key='-MID8-', size=(8, 1), relief='groove'),
      sg.Text(key='-HIGH8-', size=(8, 1), relief='groove'), sg.Button('Higher', key='-HIGHER8-')],
-    [sg.Text('Final Sensitivity: ', justification='center'), sg.Text(key='-FINAL-', size=(8, 1), relief='groove', justification='center')],
-    [sg.Button('Exit')]]
+    [sg.Text('Final Sensitivity: ', justification='center'),
+     sg.Text(key='-FINAL-', size=(8, 1), relief='groove', justification='center'),
+     sg.Text('Previous Sensitivity: ', justification='center'),
+     sg.Text(key='-PREV-', size=(8, 1), relief='groove', justification='center')],
+    [sg.Button('Exit'), sg.Button('Clear')]]
 
 window = sg.Window('Sensitivity Calculator', layout)
 iteration_count = 0
 mid = float()
 high = float()
 low = float()
-print(sg.theme_button_color())
+keys_to_clear = ['-IN-', '-ITER-', '-HIGH-', '-MID-', '-LOW-', '-HIGH1-', '-MID1-', '-LOW1-', '-HIGH2-', '-MID2-',
+                 '-LOW2-', '-HIGH3-', '-MID3-', '-LOW3-', '-HIGH4-', '-MID4-', '-LOW4-', '-HIGH5-', '-MID5-', '-LOW5-',
+                 '-HIGH6-', '-MID6-', '-LOW6-', '-HIGH7-', '-MID7-', '-LOW7-', '-HIGH8-', '-MID8-', '-LOW8-', '-FINAL-']
 while True:  # Event Loop
     event, values = window.read()
-    print(event, values)
     if event in (None, 'Exit'):
         break
+    if event == 'Clear':
+        iteration_count = 0
+        window['-PREV-'].Update(mid)
+        for key in keys_to_clear:
+            window[key]('')
+            window.FindElement(key).Update(text_color='black')
+
     if event == 'Show':
         # Update the "output" text element to be the value of "input" element
         iteration_count += 1
@@ -64,8 +87,6 @@ while True:  # Event Loop
         # Change color of next buttons
         window.FindElement('-LOWER-').Update(button_color=('white', 'red'))
         window.FindElement('-HIGHER-').Update(button_color=('white', 'red'))
-
-
 
     # iter 1
 
@@ -82,8 +103,10 @@ while True:  # Event Loop
         window.FindElement('-LOWER1-').Update(button_color=('white', 'red'))
         window.FindElement('-HIGHER1-').Update(button_color=('white', 'red'))
         # Change back color of previous buttons
-        window.FindElement('-LOWER-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER-').Update(button_color=('white', '#0079d3'))
+        window.FindElement('-LOWER-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-LOW-').Update(text_color='red')
 
     if event == '-HIGHER-':
         iteration_count += 1
@@ -100,6 +123,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-HIGH-').Update(text_color='red')
 
     # iter 2
 
@@ -116,8 +141,10 @@ while True:  # Event Loop
         window.FindElement('-LOWER2-').Update(button_color=('white', 'red'))
         window.FindElement('-HIGHER2-').Update(button_color=('white', 'red'))
         # Change back color of previous buttons
-        window.FindElement('-LOWER1-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER1-').Update(button_color=('white', '#0079d3'))
+        window.FindElement('-LOWER1-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-LOW1-').Update(text_color='red')
 
     if event == '-HIGHER1-':
         iteration_count += 1
@@ -132,8 +159,10 @@ while True:  # Event Loop
         window.FindElement('-LOWER2-').Update(button_color=('white', 'red'))
         window.FindElement('-HIGHER2-').Update(button_color=('white', 'red'))
         # Change back color of previous buttons
-        window.FindElement('-LOWER1-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER1-').Update(button_color=('white', '#0079d3'))
+        window.FindElement('-LOWER1-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-HIGH1-').Update(text_color='red')
         # iter 2
 
     if event == '-LOWER2-':
@@ -149,8 +178,10 @@ while True:  # Event Loop
         window.FindElement('-LOWER3-').Update(button_color=('white', 'red'))
         window.FindElement('-HIGHER3-').Update(button_color=('white', 'red'))
         # Change back color of previous buttons
-        window.FindElement('-LOWER2-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER2-').Update(button_color=('white', '#0079d3'))
+        window.FindElement('-LOWER2-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-LOW2-').Update(text_color='red')
 
     if event == '-HIGHER2-':
         iteration_count += 1
@@ -167,6 +198,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER2-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER2-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-HIGH2-').Update(text_color='red')
 
     # iter 3
 
@@ -185,6 +218,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER3-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER3-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-LOW3-').Update(text_color='red')
 
     if event == '-HIGHER3-':
         iteration_count += 1
@@ -201,6 +236,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER3-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER3-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-HIGH3-').Update(text_color='red')
     # iter 4
 
     if event == '-LOWER4-':
@@ -218,6 +255,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER4-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER4-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-LOW4-').Update(text_color='red')
 
     if event == '-HIGHER4-':
         iteration_count += 1
@@ -234,6 +273,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER4-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER4-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-HIGH4-').Update(text_color='red')
     # iter 5
 
     if event == '-LOWER5-':
@@ -251,6 +292,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER5-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER5-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-LOW5-').Update(text_color='red')
 
     if event == '-HIGHER5-':
         iteration_count += 1
@@ -267,6 +310,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER5-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER5-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-HIGH5-').Update(text_color='red')
     # iter 6
 
     if event == '-LOWER6-':
@@ -284,6 +329,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER6-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER6-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-LOW6-').Update(text_color='red')
 
     if event == '-HIGHER6-':
         iteration_count += 1
@@ -300,6 +347,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER6-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER6-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-HIGH6-').Update(text_color='red')
     # iter 7
 
     if event == '-LOWER7-':
@@ -317,6 +366,8 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER7-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER7-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-LOW7-').Update(text_color='red')
 
     if event == '-HIGHER7-':
         iteration_count += 1
@@ -333,27 +384,29 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-LOWER7-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER7-').Update(button_color=('white', '#0079d3'))
+        # Change Text Color
+        window.FindElement('-HIGH7-').Update(text_color='red')
 
     # iter 8
 
     if event == '-LOWER8-':
         iteration_count += 1
-        mid += low
-        mid = mid / 2
+        mid = format((mid + high) / 2, '.2f')
         window['-ITER-'].update(iteration_count)
         window['-FINAL-'].update(mid)
         # Change back color of previous buttons
-        window.FindElement('-LOWER8-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER8-').Update(button_color=('white', '#0079d3'))
+        window.FindElement('-LOWER8-').Update(button_color=('white', '#0079d3'))
+        window.FindElement('-LOW8-').Update(text_color='red')
 
     if event == '-HIGHER8-':
         iteration_count += 1
         window['-ITER-'].update(iteration_count)
-        mid += high
-        mid = mid / 2
+        mid = format((mid + high) / 2, '.2f')
         window['-FINAL-'].update(mid)
         # Change back color of previous buttons
-        window.FindElement('-LOWER8-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER8-').Update(button_color=('white', '#0079d3'))
+        window.FindElement('-LOWER8-').Update(button_color=('white', '#0079d3'))
+        window.FindElement('-HIGH8-').Update(text_color='red')
 
 window.close()

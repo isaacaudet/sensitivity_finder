@@ -10,7 +10,7 @@ def high_val(starting, offset=0):
 
 
 def mid_val(starting, new):
-    return float(format((starting + new) / 2, '.2f'))
+    return float((starting + new) / 2)
 
 
 sg.theme('Reddit')
@@ -18,7 +18,7 @@ sg.theme('Reddit')
 
 layout = [
     [sg.Text('Starting Sensitivity'), sg.Input(key='-IN-', size=(8, 1)), sg.Button('Show'), sg.Text('Iteration:'),
-     sg.Text(key='-ITER-', size=(4, 1), relief='groove')],
+     sg.Text(key='-ITER-', size=(4, 1))],
     [sg.Text('', size=(5, 1)), sg.Text('Lower', size=(8, 1), justification='center'),
      sg.Text('Mid', size=(8, 1), justification='center'),
      sg.Text('Upper', size=(8, 1), justification='center')],
@@ -69,7 +69,7 @@ while True:  # Event Loop
         break
     if event == 'Clear':
         iteration_count = 0
-        window['-PREV-'].Update(mid)
+        window['-PREV-'].Update(format(float(mid), '.2f'))
         for key in keys_to_clear:
             window[key]('')
             window.FindElement(key).Update(text_color='black')
@@ -82,11 +82,11 @@ while True:  # Event Loop
         low = low_val(mid)
         window['-ITER-'].update(iteration_count)
         window['-LOW-'].update(low)
-        window['-MID-'].update(mid)
+        window['-MID-'].update(format(mid, '.2f'))
         window['-HIGH-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER-').Update(button_color=('white', '#07499D'))
 
     # iter 1
 
@@ -97,16 +97,16 @@ while True:  # Event Loop
         low = low_val(mid)
         window['-ITER-'].update(iteration_count)
         window['-LOW1-'].update(low)
-        window['-MID1-'].update(mid)
+        window['-MID1-'].update(format(mid, '.2f'))
         window['-HIGH1-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER1-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER1-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER1-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER1-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-HIGHER-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-LOWER-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-LOW-').Update(text_color='red')
+        window.FindElement('-LOW-').Update(text_color='#FE0303')
 
     if event == '-HIGHER-':
         iteration_count += 1
@@ -114,17 +114,17 @@ while True:  # Event Loop
         mid = mid_val(mid, high)
         high = high_val(mid)
         low = low_val(mid)
-        window['-MID1-'].update(mid)
+        window['-MID1-'].update(format(mid, '.2f'))
         window['-LOW1-'].update(low)
         window['-HIGH1-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER1-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER1-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER1-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER1-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-HIGH-').Update(text_color='red')
+        window.FindElement('-HIGH-').Update(text_color='#FE0303')
 
     # iter 2
 
@@ -135,16 +135,16 @@ while True:  # Event Loop
         low = low_val(mid, .1)
         window['-ITER-'].update(iteration_count)
         window['-LOW2-'].update(low)
-        window['-MID2-'].update(mid)
+        window['-MID2-'].update(format(mid, '.2f'))
         window['-HIGH2-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER2-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER2-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER2-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER2-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-HIGHER1-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-LOWER1-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-LOW1-').Update(text_color='red')
+        window.FindElement('-LOW1-').Update(text_color='#FE0303')
 
     if event == '-HIGHER1-':
         iteration_count += 1
@@ -152,17 +152,17 @@ while True:  # Event Loop
         mid = mid_val(mid, high)
         high = high_val(mid, .1)
         low = low_val(mid, .1)
-        window['-MID2-'].update(mid)
+        window['-MID2-'].update(format(mid, '.2f'))
         window['-LOW2-'].update(low)
         window['-HIGH2-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER2-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER2-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER2-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER2-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-HIGHER1-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-LOWER1-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-HIGH1-').Update(text_color='red')
+        window.FindElement('-HIGH1-').Update(text_color='#FE0303')
         # iter 2
 
     if event == '-LOWER2-':
@@ -172,16 +172,16 @@ while True:  # Event Loop
         low = low_val(mid, .2)
         window['-ITER-'].update(iteration_count)
         window['-LOW3-'].update(low)
-        window['-MID3-'].update(mid)
+        window['-MID3-'].update(format(mid, '.2f'))
         window['-HIGH3-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER3-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER3-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER3-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER3-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-HIGHER2-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-LOWER2-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-LOW2-').Update(text_color='red')
+        window.FindElement('-LOW2-').Update(text_color='#FE0303')
 
     if event == '-HIGHER2-':
         iteration_count += 1
@@ -189,17 +189,17 @@ while True:  # Event Loop
         mid = mid_val(mid, high)
         high = high_val(mid, .2)
         low = low_val(mid, .2)
-        window['-MID3-'].update(mid)
+        window['-MID3-'].update(format(mid, '.2f'))
         window['-LOW3-'].update(low)
         window['-HIGH3-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER3-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER3-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER3-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER3-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER2-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER2-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-HIGH2-').Update(text_color='red')
+        window.FindElement('-HIGH2-').Update(text_color='#FE0303')
 
     # iter 3
 
@@ -210,16 +210,16 @@ while True:  # Event Loop
         low = low_val(mid, .3)
         window['-ITER-'].update(iteration_count)
         window['-LOW4-'].update(low)
-        window['-MID4-'].update(mid)
+        window['-MID4-'].update(format(mid, '.2f'))
         window['-HIGH4-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER4-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER4-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER4-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER4-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER3-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER3-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-LOW3-').Update(text_color='red')
+        window.FindElement('-LOW3-').Update(text_color='#FE0303')
 
     if event == '-HIGHER3-':
         iteration_count += 1
@@ -227,17 +227,17 @@ while True:  # Event Loop
         mid = mid_val(mid, high)
         high = high_val(mid, .3)
         low = low_val(mid, .3)
-        window['-MID4-'].update(mid)
+        window['-MID4-'].update(format(mid, '.2f'))
         window['-LOW4-'].update(low)
         window['-HIGH4-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER4-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER4-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER4-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER4-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER3-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER3-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-HIGH3-').Update(text_color='red')
+        window.FindElement('-HIGH3-').Update(text_color='#FE0303')
     # iter 4
 
     if event == '-LOWER4-':
@@ -247,16 +247,16 @@ while True:  # Event Loop
         low = low_val(mid, .4)
         window['-ITER-'].update(iteration_count)
         window['-LOW5-'].update(low)
-        window['-MID5-'].update(mid)
+        window['-MID5-'].update(format(mid, '.2f'))
         window['-HIGH5-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER5-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER5-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER5-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER5-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER4-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER4-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-LOW4-').Update(text_color='red')
+        window.FindElement('-LOW4-').Update(text_color='#FE0303')
 
     if event == '-HIGHER4-':
         iteration_count += 1
@@ -264,17 +264,17 @@ while True:  # Event Loop
         mid = mid_val(mid, high)
         high = high_val(mid, .4)
         low = low_val(mid, .4)
-        window['-MID5-'].update(mid)
+        window['-MID5-'].update(format(mid, '.2f'))
         window['-LOW5-'].update(low)
         window['-HIGH5-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER5-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER5-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER5-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER5-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER4-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER4-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-HIGH4-').Update(text_color='red')
+        window.FindElement('-HIGH4-').Update(text_color='#FE0303')
     # iter 5
 
     if event == '-LOWER5-':
@@ -284,16 +284,16 @@ while True:  # Event Loop
         low = low_val(mid, .45)
         window['-ITER-'].update(iteration_count)
         window['-LOW6-'].update(low)
-        window['-MID6-'].update(mid)
+        window['-MID6-'].update(format(mid, '.2f'))
         window['-HIGH6-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER6-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER6-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER6-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER6-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER5-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER5-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-LOW5-').Update(text_color='red')
+        window.FindElement('-LOW5-').Update(text_color='#FE0303')
 
     if event == '-HIGHER5-':
         iteration_count += 1
@@ -301,17 +301,17 @@ while True:  # Event Loop
         mid = mid_val(mid, high)
         high = high_val(mid, .45)
         low = low_val(mid, .45)
-        window['-MID6-'].update(mid)
+        window['-MID6-'].update(format(mid, '.2f'))
         window['-LOW6-'].update(low)
         window['-HIGH6-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER6-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER6-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER6-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER6-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER5-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER5-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-HIGH5-').Update(text_color='red')
+        window.FindElement('-HIGH5-').Update(text_color='#FE0303')
     # iter 6
 
     if event == '-LOWER6-':
@@ -321,16 +321,16 @@ while True:  # Event Loop
         low = low_val(mid, .48)
         window['-ITER-'].update(iteration_count)
         window['-LOW7-'].update(low)
-        window['-MID7-'].update(mid)
+        window['-MID7-'].update(format(mid, '.2f'))
         window['-HIGH7-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER7-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER7-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER7-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER7-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER6-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER6-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-LOW6-').Update(text_color='red')
+        window.FindElement('-LOW6-').Update(text_color='#FE0303')
 
     if event == '-HIGHER6-':
         iteration_count += 1
@@ -338,17 +338,17 @@ while True:  # Event Loop
         mid = mid_val(mid, high)
         high = high_val(mid, .48)
         low = low_val(mid, .48)
-        window['-MID7-'].update(mid)
+        window['-MID7-'].update(format(mid, '.2f'))
         window['-LOW7-'].update(low)
         window['-HIGH7-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER7-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER7-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER7-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER7-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER6-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER6-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-HIGH6-').Update(text_color='red')
+        window.FindElement('-HIGH6-').Update(text_color='#FE0303')
     # iter 7
 
     if event == '-LOWER7-':
@@ -358,16 +358,16 @@ while True:  # Event Loop
         low = low_val(mid, .49)
         window['-ITER-'].update(iteration_count)
         window['-LOW8-'].update(low)
-        window['-MID8-'].update(mid)
+        window['-MID8-'].update(format(mid, '.2f'))
         window['-HIGH8-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER8-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER8-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER8-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER8-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER7-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER7-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-LOW7-').Update(text_color='red')
+        window.FindElement('-LOW7-').Update(text_color='#FE0303')
 
     if event == '-HIGHER7-':
         iteration_count += 1
@@ -375,17 +375,17 @@ while True:  # Event Loop
         mid = mid_val(mid, high)
         high = high_val(mid, .49)
         low = low_val(mid, .49)
-        window['-MID8-'].update(mid)
+        window['-MID8-'].update(format(mid, '.2f'))
         window['-LOW8-'].update(low)
         window['-HIGH8-'].update(high)
         # Change color of next buttons
-        window.FindElement('-LOWER8-').Update(button_color=('white', 'red'))
-        window.FindElement('-HIGHER8-').Update(button_color=('white', 'red'))
+        window.FindElement('-LOWER8-').Update(button_color=('white', '#07499D'))
+        window.FindElement('-HIGHER8-').Update(button_color=('white', '#07499D'))
         # Change back color of previous buttons
         window.FindElement('-LOWER7-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-HIGHER7-').Update(button_color=('white', '#0079d3'))
         # Change Text Color
-        window.FindElement('-HIGH7-').Update(text_color='red')
+        window.FindElement('-HIGH7-').Update(text_color='#FE0303')
 
     # iter 8
 
@@ -397,7 +397,7 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-HIGHER8-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-LOWER8-').Update(button_color=('white', '#0079d3'))
-        window.FindElement('-LOW8-').Update(text_color='red')
+        window.FindElement('-LOW8-').Update(text_color='#FE0303')
 
     if event == '-HIGHER8-':
         iteration_count += 1
@@ -407,6 +407,6 @@ while True:  # Event Loop
         # Change back color of previous buttons
         window.FindElement('-HIGHER8-').Update(button_color=('white', '#0079d3'))
         window.FindElement('-LOWER8-').Update(button_color=('white', '#0079d3'))
-        window.FindElement('-HIGH8-').Update(text_color='red')
+        window.FindElement('-HIGH8-').Update(text_color='#FE0303')
 
 window.close()
